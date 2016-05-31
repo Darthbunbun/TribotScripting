@@ -14,23 +14,17 @@ public class Bank {
 	
 	private int failToWithdraw = 0;
 	
-	private FlaxWalker walk = new FlaxWalker();
-	
 	public void bank() {
 		
 		if(Player.isMoving()) {
 			General.sleep(150,200);
 		}
 		
-		if(isInBank()) {
-			if(Banking.openBank() && Timing.waitCondition(Conditions.IS_BANK_OPEN_CONDITION, 3000)) {
-				if(needsToDeposit()) {
-					depositFlax();
-				}
+		if(Banking.openBank() && Timing.waitCondition(Conditions.IS_BANK_OPEN_CONDITION, 1200)) {
+			if(needsToDeposit()) {
+				depositFlax();
+			}
 				withdrawFlax();	
-			} 
-		} else {
-			walk.walkToBank();
 		}
 	}
 	
@@ -38,7 +32,7 @@ public class Bank {
 		Variables.get().status = "Withdrawing flax";
 		if(BankHelper.waitUntilBankLoaded() && Banking.withdraw(0, "Flax")) {
 			failToWithdraw = 0;
-			return Timing.waitCondition(Conditions.inventoryContainsCondition("Flax"), 3000);
+			return Timing.waitCondition(Conditions.inventoryContainsCondition("Flax"), 1500);
 		}
 		failToWithdraw();
 		return false;
@@ -47,7 +41,7 @@ public class Bank {
 	private boolean depositFlax() {
 		Variables.get().status = "Depositng flax";
 		if(Banking.depositAll() > 0) {
-			return Timing.waitCondition(Conditions.inventorySizeCondition(0), 3000);
+			return Timing.waitCondition(Conditions.inventorySizeCondition(0),1500);
 		}
 		return false;
 	}

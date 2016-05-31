@@ -12,12 +12,14 @@ public class GetState {
 	
 	private Bank bank = new Bank();
 	private Spin spin = new Spin();
+	private FlaxWalker walk = new FlaxWalker();
 	
 	public enum State {
 		BANK,
 		WALK_TO_WHEEL,
 		USE_WHEEL,
 		SELECT_FLAX,
+		WALK_TO_BANK,
 		SLEEP
 	}
 	
@@ -35,7 +37,11 @@ public class GetState {
 			break;
 		case WALK_TO_WHEEL:
 			Variables.get().status = "Walking to wheel";
-			spin.walkToWheel();
+			walk.walkToWheel();
+			break;
+		case WALK_TO_BANK:
+			Variables.get().status = "Walking to bank";
+			walk.walkToBank();
 			break;
 		case USE_WHEEL:
 			Variables.get().status = "Using Wheel";
@@ -46,33 +52,35 @@ public class GetState {
 			spin.flaxInterface();
 			break;
 		case SLEEP:
-			Variables.get().status = "Making flax";
-			
+			Variables.get().status = "Making flax";	
 			 while(spin.isCrafting()) {
 				 General.sleep(100,200);        
 				 if(Variables.get().abc_util.shouldLeaveGame() && Mouse.isInBounds()) {
 					 Variables.get().abc_util.leaveGame();                 
-				 }
-				 else if(Mouse.isInBounds()){
+				 } else if(Mouse.isInBounds()){
 					Variables.get().abc_util.performTimedActions();
-	            }
-	            }
+				 }
+			 }
 			 break;
 		}
 	}
 	
 	public State state() {
-		if(bank.needToBank()) {
+		if(bank.needToBank() && bank.isInBank()) {
 			return State.BANK;
-		} else if(spin.isAtFlax()) {
-			if(InterfacesHelper.interfaceOpen(1500, 459)) {
-				return State.SELECT_FLAX;
-			} else if(spin.isCrafting()) {
-				return State.SLEEP;				
-			} else {
-				return State.USE_WHEEL;				
+		} else if(bank.needToBank() && !bank.isInBank()) {
+			return State.WALK_TO_BANK;
+		} else {
+			if(spin.isAtFlax()) {
+				if(InterfacesHelper.interfaceOpen(1500, 459)) {
+					return State.SELECT_FLAX;
+				} else if(spin.isCrafting()) {
+					return State.SLEEP;
+				} else {
+					return State.USE_WHEEL;
+				}
 			}
+				return State.WALK_TO_WHEEL;
 		}
-		return State.WALK_TO_WHEEL;
 	}
 }

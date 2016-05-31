@@ -1,6 +1,5 @@
 package scripts.MontsFlax.states;
 
-
 import org.tribot.api.General;
 import org.tribot.api.Timing;
 import org.tribot.api.input.Keyboard;
@@ -15,20 +14,8 @@ import scripts.MontsFlax.utils.Variables;
 import scripts.api.Conditions;
 import scripts.api.helpers.InterfacesHelper;
 import scripts.api.interaction.ClickObject;
+
 public class Spin {
-	
-	private FlaxWalker walk = new FlaxWalker();
-	
-	public void walkToWheel() {
-		
-		if(isAtFlax()) {			
-			if(Player.isMoving()) {
-				General.sleep(150,200);
-			}			
-		} else {
-			walk.walkToSpinner();
-		}
-	}
 	
 	public boolean spinWheel() {
 		
@@ -57,20 +44,23 @@ public class Spin {
 		return false;
 	}
 	
-	public void typeAmount() {
-			int rand = General.random(1, 50);		
-			if(rand <= 10) {
-				Keyboard.typeSend("28");
-				Variables.get().abc_util.generateTrackers();
-				
-			} else if(rand <= 20) {
-				Keyboard.typeSend("33");
-				Variables.get().abc_util.generateTrackers();
-				
-			} else {
-				Keyboard.typeSend("111");
-				Variables.get().abc_util.generateTrackers();
-			}
+	public boolean typeAmount() {
+		int rand = General.random(1, 50);		
+		if(rand <= 10) {
+			Keyboard.typeSend("28");
+			Variables.get().abc_util.generateTrackers();
+			return true;
+			
+		} else if(rand <= 20) {
+			Keyboard.typeSend("33");
+			Variables.get().abc_util.generateTrackers();
+			return true;
+			
+		} else {
+			Keyboard.typeSend("111");
+			Variables.get().abc_util.generateTrackers();
+			return true;
+		}
 	}
 
 	public boolean isCrafting() {
@@ -85,5 +75,4 @@ public class Spin {
 	public boolean isAtFlax() {
 		return Constants.WHEEL_AREA.contains(Player.getPosition());
 	}
-
 }

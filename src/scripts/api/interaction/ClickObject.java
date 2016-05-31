@@ -16,16 +16,16 @@ public class ClickObject {
     public static boolean interact(final int id, final String action) {
     	RSObject[] object = Objects.findNearest(15, Filters.Objects.idEquals(id));
     	
-    	if(object != null) {		
+    	if(object.length > 0) {		
     		return interact(object[0], action);
     	} 
     	return false;   	
     }   
     //Interact by name
     public static boolean interact(final String name, final String action) {  	
-    	RSObject[] object = Objects.findNearest(15, Filters.Objects.nameContains("name"));
+    	RSObject[] object = Objects.findNearest(15, Filters.Objects.nameContains(name));
     	
-    	if(object != null) {
+    	if(object.length > 0) {
     		return interact(object[0], action);
     	}
     	return false;

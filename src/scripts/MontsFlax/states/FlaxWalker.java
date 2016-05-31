@@ -8,7 +8,7 @@ import scripts.api.Conditions;
 public class FlaxWalker {
 	
 	
-	public void walkToSpinner() {
+	public void walkToWheel() {
 		
 		if(WebWalking.walkTo(Constants.WHEEL_TILE)) {
 			Timing.waitCondition(Conditions.isInAreaCondition(Constants.WHEEL_AREA), 5000);
