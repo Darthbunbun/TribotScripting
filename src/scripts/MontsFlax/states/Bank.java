@@ -18,9 +18,7 @@ public class Bank {
 		
 		if(Player.isMoving()) {
 			General.sleep(150,200);
-		}
-		
-		if(Banking.openBank() && Timing.waitCondition(Conditions.IS_BANK_OPEN_CONDITION, 1200)) {
+		} else if(Banking.openBank() && Timing.waitCondition(Conditions.IS_BANK_OPEN_CONDITION, 1200)) {
 			if(needsToDeposit()) {
 				depositFlax();
 			}

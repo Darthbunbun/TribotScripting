@@ -15,7 +15,7 @@ public class ItemOnObject extends ClickObject{
 	
 	public static boolean useItemOnObject(String action, String name, String itemName) {
 		RSObject[] object = Objects.findNearest(10, Filters.Objects.nameContains(name));
-		if(object != null) {
+		if(object.length > 0) {
 			interact(object[0], action,  itemName,  name);
 		}
 		return false;	
@@ -46,7 +46,6 @@ public class ItemOnObject extends ClickObject{
 					}
 				}
 			} else { //Bar is already selected
-				
 				return Clicking.click("Use " + itemName + " -> " + name, object);
 			}
 		} 

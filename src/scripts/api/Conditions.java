@@ -118,7 +118,7 @@ public class Conditions {
 			@Override
 			public boolean active() {
 				General.sleep(100,200);
-				return Player.getPosition() == tile;
+				return Player.getPosition().equals(tile);
 			}
 		};
 	}

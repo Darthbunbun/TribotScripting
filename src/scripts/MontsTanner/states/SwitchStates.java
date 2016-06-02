@@ -1,5 +1,6 @@
 package scripts.MontsTanner.states;
 
+import org.tribot.api.General;
 import org.tribot.api2007.Banking;
 import org.tribot.api2007.Game;
 import org.tribot.api2007.Options;
@@ -45,11 +46,12 @@ public class SwitchStates {
 			Variables.get().status = "Banking";
 			bank.bank();
 			break;
-		}
-			
+		}		
+		General.sleep(100,200);
+
 	}
 	
-	public static State state() {
+	private static State state() {
 		if(bank.needToBank()) {
 			if(!Banking.isInBank()) {
 				return State.WALK_TO_BANK;

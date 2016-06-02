@@ -27,10 +27,10 @@ public class Variables {
 	public String tannerName = "Ellis";
 	public int coinsToMake;
 	public int child;
-	public int leatherMade;
 	
 	public RSArea tanArea = new RSArea(new RSTile(3273,3189,0), new RSTile(3276,3194,0));
-	public RSTile tanTile = new RSTile(3275,3191);
+	public RSTile tanTile = new RSTile(3275,3191),
+				  bankTile = new RSTile(3269,3167,0);
 	
 		
 	public boolean hasMats = true; 

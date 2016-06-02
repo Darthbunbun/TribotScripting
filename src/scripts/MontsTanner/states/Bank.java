@@ -6,7 +6,6 @@ import org.tribot.api2007.Banking;
 import org.tribot.api2007.Inventory;
 import org.tribot.api2007.Login;
 import org.tribot.api2007.Player;
-import org.tribot.api2007.WebWalking;
 import org.tribot.api2007.ext.Filters;
 import org.tribot.api2007.types.RSItem;
 
@@ -23,13 +22,13 @@ public class Bank {
 	private String leather = Variables.get().leather;
 	
 	public void walkToBank() {
-		if(WebWalking.walkToBank()) {
+		if(Variables.get().dPath.traverse(Variables.get().bankTile)) {
 			Timing.waitCondition(Conditions.IN_BANK_CONDITION, 15000);
 		}
 	}
 
 	public void bank() {
-
+		
 		if(Player.isMoving()) {
 			General.sleep(150,250);
 		}	
@@ -58,7 +57,7 @@ public class Bank {
 		}	
 	}
 	
-	public void depositLeather() {
+	private void depositLeather() {
 		Variables.get().status = "Depositing Leather";
 		
 		if(Banking.depositAllExcept(GP_ID) > 0) {
@@ -66,14 +65,14 @@ public class Bank {
 		}
 	}
 
-	public void withdrawMats() {	
+	private void withdrawMats() {	
 		Variables.get().status = "Withdrawing Hides";
 		
 		if(BankHelper.waitUntilBankLoaded()) {	
 			if(hasMoney()) {
 				if(Banking.withdraw(0, hide)) {			
 					failToWithdraw = 0;
-					Timing.waitCondition(Conditions.inventoryContainsCondition(hide), 3000);			
+					Timing.waitCondition(Conditions.inventoryContainsCondition(hide), 3000);	
 				} else {
 					failToWithdraw();
 				}	
@@ -82,13 +81,13 @@ public class Bank {
 					Timing.waitCondition(Conditions.inventoryContainsCondition(GP_ID), 3000);
 				} else {
 					General.println("Cannot find coins, ending script");
-					Variables.get().hasMats = false;			
+					Variables.get().hasMats = false;
 				}
 			}
 		}
 	}
 	
-	public void failToWithdraw() {
+	private void failToWithdraw() {
 		failToWithdraw++;
 		
 		if(failToWithdraw > 2) {
@@ -97,7 +96,7 @@ public class Bank {
 		}
 	}
 	
-	public boolean withdrawSuperEnergy() {	
+	private boolean withdrawSuperEnergy() {	
 		RSItem[] i = Banking.find(Filters.Items.nameContains("Super energy"));
 	    
 	   if(i.length > 0 && Banking.withdrawItem(i[0], 1)) { //We found and withdrew potions
@@ -106,15 +105,15 @@ public class Bank {
 	   return false;
 	}
 	
-	public boolean needsToDeposit() {
+	private boolean needsToDeposit() {
 		return Inventory.getCount(leather) > 0 || Inventory.getCount("Vial") > 0;
 	}
 	
-	public boolean needToWithdraw() {
+	private boolean needToWithdraw() {
 		return Inventory.getCount(hide) < 1;
 	}
 	
-	public boolean hasMoney() {
+	private boolean hasMoney() {
 		return Inventory.getCount(GP_ID) > Variables.get().coinsToMake;
 	}
 	

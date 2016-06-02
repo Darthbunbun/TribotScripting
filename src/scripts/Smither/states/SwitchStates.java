@@ -62,6 +62,7 @@ public class SwitchStates {
             }
             break;
 		}
+		General.sleep(100,200);
 	}
 
 	private static State state() {

@@ -19,7 +19,7 @@ import scripts.MontsFlax.utils.Variables;
 @ScriptManifest(authors = { "Montreal176" }, category = "Crafting", name = "MontsFlaxSpinner")
 
 
-public class Main extends Script implements Painting, Starting {
+public class MontsFlax extends Script implements Painting, Starting {
 	
 	private GetState getState = new GetState();
 	
@@ -58,12 +58,10 @@ public class Main extends Script implements Painting, Starting {
 		g.setFont(font);	
 		g.setColor(Color.GREEN);
 		
-		g.drawString("Runtime: " + Timing.msToString(runTime), 4,335);
-		g.drawString("Bowstrings made: " +  stringsMade + "(" + stringsPerHour + ")", 4, 320);
+		g.drawString("Runtime: " + Timing.msToString(runTime), 4,275);
+		g.drawString("Bowstrings made: " +  stringsMade + "(" + stringsPerHour + ")", 4, 290);
 		g.drawString("Level : " + level + "(" + levelGain + ")", 4, 305);
-		g.drawString("Exp Gain: " + expGain + "(" + xpPerHour + ")", 4, 290);
-		g.drawString("Status: " + Variables.get().status, 4, 275);
+		g.drawString("Exp Gain: " + expGain + "(" + xpPerHour + ")", 4, 320);
+		g.drawString("Status: " + Variables.get().status, 4, 335);
 	}
-
-
 }

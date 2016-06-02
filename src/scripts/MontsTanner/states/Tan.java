@@ -1,10 +1,10 @@
 package scripts.MontsTanner.states;
 
 import org.tribot.api.DynamicClicking;
+import org.tribot.api.General;
 import org.tribot.api.Timing;
 import org.tribot.api2007.Camera;
 import org.tribot.api2007.Interfaces;
-import org.tribot.api2007.Inventory;
 import org.tribot.api2007.NPCs;
 import org.tribot.api2007.Player;
 import org.tribot.api2007.types.RSInterface;
@@ -18,15 +18,20 @@ public class Tan {
 	
 	private final RSTile tanTile = Variables.get().tanTile;
 	
-	public void walkToTanner() {
+	public boolean walkToTanner() {
 		if(Variables.get().dPath.traverse(tanTile)) {
-			Timing.waitCondition(Conditions.isInAreaCondition(Variables.get().tanArea), 15000);
+			return Timing.waitCondition(Conditions.isInAreaCondition(Variables.get().tanArea), 15000);
 		}
+		return false;
 	}
 	
 	public void tanHides() {
 		
 		RSNPC[] tanner = NPCs.find(Variables.get().tannerName);
+		
+		if(Player.isMoving()) {
+			General.sleep(250,500);
+		}
 		
 		if(!tanner[0].isClickable()) {
 			Camera.turnToTile(tanTile);
@@ -39,10 +44,10 @@ public class Tan {
 		RSInterface tanInterface = Interfaces.get(324, Variables.get().child);
 		
 		if(tanInterface != null && tanInterface.click("Tan All")) {
-			Variables.get().leatherMade += Inventory.getCount(Variables.get().leather);
 			Timing.waitCondition(Conditions.inventoryContainsCondition(Variables.get().leather), 3000);
 		}
 	}
+	
 	
 	public boolean isAtTanner() {
 		return Variables.get().tanArea.contains(Player.getPosition());

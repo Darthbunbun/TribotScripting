@@ -42,7 +42,7 @@ public class Bank {
 		}
 	}
 	
-	public void withdrawOres() { //Ores - Cannonballs
+	public void withdrawOres() { //Ores -> Cannonballs
 
 	    if(Banking.openBank() && Timing.waitCondition(Conditions.IS_BANK_OPEN_CONDITION, 3000)) {
 	    	if(Banking.depositAllExcept(Constants.MOULD) > 0 ) {
@@ -61,11 +61,10 @@ public class Bank {
 	    			failToWithdraw();
 	    		}
 	    	} 	
-	    }
-		
+	    }	
 	}
 	
-	public void withdrawBars() { //Bars - Cannonballs
+	public void withdrawBars() { //Bars -> Cannonballs
 
 	    if(Banking.openBank() && Timing.waitCondition(Conditions.IS_BANK_OPEN_CONDITION, 3000)) {
 	    	if(Banking.depositAllExcept(Constants.MOULD) > 0 ) {

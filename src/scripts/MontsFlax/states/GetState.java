@@ -63,6 +63,7 @@ public class GetState {
 			 }
 			 break;
 		}
+		General.sleep(100,200);
 	}
 	
 	public State state() {

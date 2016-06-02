@@ -42,7 +42,7 @@ public class Gui extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Leather", "Soft-leather", "Green dragon leather", "Blue dragon leather", "Red dragon leather", "Black dragon leather" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Leather", "Hard leather", "Green dragon leather", "Blue dragon leather", "Red dragon leather", "Black dragon leather" }));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel2.setText("Leather to make");
@@ -101,11 +101,14 @@ public class Gui extends javax.swing.JFrame {
     
     private void hideChoice() { 
     	Variables.get().leather = (jComboBox1.getSelectedItem().toString()); 
+    	
     	switch (Variables.get().leather) { 
-    	case "Leather": Variables.get().hide = "Cowhide"; 
-    	Variables.get().coinsToMake = 1; 
-    	Variables.get().child = 108; 
-    	break; 
+    	
+    	case "Leather": 
+    		Variables.get().hide = "Cowhide"; 
+    		Variables.get().coinsToMake = 1; 
+    		Variables.get().child = 108; 
+    		break; 
     	case "Hard leather": 
     		Variables.get().hide = "Cowhide"; 
     		Variables.get().coinsToMake = 3; 

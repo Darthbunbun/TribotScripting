@@ -89,7 +89,7 @@ public class Furnace {
 				}
 			}	
 		}
-		if(Inventory.getCount(Constants.COAL) == 0) { //Only checking for coal because, no coal wwe cant smith bars.
+		if(Inventory.getCount(Constants.COAL) == 0) { //Only checking for coal because, if no coal we cant smith bars.
 			smithBars();
 		}
 	}

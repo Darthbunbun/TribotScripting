@@ -64,6 +64,7 @@ public class Spin {
 	}
 
 	public boolean isCrafting() {
+		
 		if(Inventory.getCount("Flax") == 0 || !Player.getPosition().equals(Constants.WHEEL_TILE)
 		|| NPCChat.getMessage() != null) {
 			return false;
