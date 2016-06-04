@@ -77,7 +77,7 @@ public class SwitchStates {
 			if (!furnace.isAtFurnace()) {	
 				return State.WALK_TO_FURNACE;
 			} else if(furnace.isSmithing()) {
-					return State.SLEEP;
+				return State.SLEEP;
 			} else {
 				return State.SMITH_BALLS;
 			}
