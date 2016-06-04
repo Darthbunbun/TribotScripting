@@ -50,8 +50,8 @@ public class SwitchStates {
 			break;
 
 		case SLEEP:
-            Variables.get().status = "Smithing Cannonballs";         
-            while(furnace.isSmithing()) {
+        	 Variables.get().status = "Smithing Cannonballs";         
+        	 while(furnace.isSmithing()) {
                 General.sleep(100,200);        
                 if(Variables.get().abc_util.shouldLeaveGame() && Mouse.isInBounds()) {
                    Variables.get().abc_util.leaveGame();                 
