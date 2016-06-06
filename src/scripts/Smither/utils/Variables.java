@@ -24,7 +24,7 @@ public class Variables {
 	public int startLevel;		
 	public String task;
 	
-	public boolean hasMats = true; //We have steel bars.
+	public boolean hasMats = true; //For start of script
 	public RSTile furnaceTile;
 	public RSArea furnaceArea;
 	public String location;
