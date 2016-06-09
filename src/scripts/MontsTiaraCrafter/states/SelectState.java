@@ -1,8 +1,6 @@
 package scripts.MontsTiaraCrafter.states;
 
 import org.tribot.api.General;
-import org.tribot.api2007.Game;
-import org.tribot.api2007.Options;
 
 import scripts.MontsTiaraCrafter.utils.Variables;
 import scripts.MontsTiaraCrafter.states.Altar;
@@ -30,18 +28,16 @@ public class SelectState {
 
 	public static void run() {
 		
-		if (!Game.isRunOn() && Game.getRunEnergy() > Variables.get().abc_util.generateRunActivation()) {
-			Options.setRunOn(true);
-		}
-		
 		switch(state()) {
 		
 		case WALK_TO_BANK:
 			Variables.get().status = "Walking to bank";
+			Variables.get().abc_util.performTimedActions();
 			walk.walkToBank();
 			break;
 		case WALK_TO_ALTAR:
 			Variables.get().status = "Walking to altar";
+			Variables.get().abc_util.performTimedActions();
 			walk.walkToAltar();
 			break;
 		case BANK:
@@ -59,6 +55,7 @@ public class SelectState {
 		case CRAFT_TIARAS:
 			Variables.get().status = "Crafting tiaras";
 			craftTiara.craftTiara();
+			Variables.get().abc_util.performTimedActions();
 			break;
 		}
 		General.sleep(250,300);

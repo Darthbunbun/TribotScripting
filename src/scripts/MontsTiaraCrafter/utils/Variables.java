@@ -22,6 +22,7 @@ public class Variables {
 	public long startTime;
 	public String status;
 	public int startingLevel;
+	public int mouseSpeed;
 
 	public String tiaraToCraft;
 	public String talismanNeeded;

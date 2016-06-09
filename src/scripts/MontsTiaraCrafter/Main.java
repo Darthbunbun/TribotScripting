@@ -6,27 +6,32 @@ import java.awt.Graphics;
 
 import org.tribot.api.General;
 import org.tribot.api.Timing;
+import org.tribot.api.input.Mouse;
 import org.tribot.api2007.Skills;
 import org.tribot.api2007.Skills.SKILLS;
 import org.tribot.script.Script;
+import org.tribot.script.ScriptManifest;
 import org.tribot.script.interfaces.Painting;
 import org.tribot.script.interfaces.Starting;
 
 import scripts.MontsTiaraCrafter.states.SelectState;
 import scripts.MontsTiaraCrafter.utils.Variables;
 
+@ScriptManifest(authors = { "Montreal176" }, category = "Runecrafting", name = "Monts Tiara Crafter")
 
-public class Main extends Script implements Starting, Painting {
+public class Main extends Script implements Painting, Starting {
 	
 	@Override
 	public void run() {
 		
 		TiaraCrafterGui gui = new TiaraCrafterGui();
-		gui.setVisible(true);
-		
+		gui.setVisible(true);	
 		while(gui.isVisible()) {
 			General.sleep(100,120);
-		}	
+		}
+		
+		General.println("Mouse speed set to " + Variables.get().mouseSpeed);
+		Mouse.setSpeed(Variables.get().mouseSpeed);
 		
 		while (Variables.get().hasMats) {
 			General.sleep(100,200);
@@ -34,7 +39,6 @@ public class Main extends Script implements Starting, Painting {
 		}
 	}
 	
-
 	@Override
 	public void onStart() {
 		Variables.reset();

@@ -3,8 +3,6 @@ package scripts.Smither.states;
 import org.tribot.api.General;
 import org.tribot.api.input.Mouse;
 import org.tribot.api2007.Banking;
-import org.tribot.api2007.Game;
-import org.tribot.api2007.Options;
 
 import scripts.Smither.utils.Variables;
 
@@ -22,10 +20,6 @@ public class SwitchStates {
 	 private static Furnace furnace = new Furnace();
 	
 	public static void run() {
-		
-		if (!Game.isRunOn() && Game.getRunEnergy() > Variables.get().abc_util.generateRunActivation()) {
-			Options.setRunOn(true);
-		}
 		
 		switch (state()) {
 		

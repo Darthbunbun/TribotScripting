@@ -29,7 +29,8 @@ public class Spin {
 		RSInterfaceChild flax = Interfaces.get(459,91);			
 	
 		if(flax != null) {
-			if(Inventory.getCount("Flax") <= 10) {
+
+			if(Inventory.getCount("Flax") < 11) {
 				flax.click("Make 10");
 				Variables.get().abc_util.generateTrackers();
 				

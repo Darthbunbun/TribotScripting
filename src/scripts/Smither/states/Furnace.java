@@ -3,9 +3,11 @@ package scripts.Smither.states;
 import org.tribot.api.General;
 import org.tribot.api.Timing;
 import org.tribot.api.types.generic.Condition;
+import org.tribot.api2007.Game;
 import org.tribot.api2007.Interfaces;
 import org.tribot.api2007.Inventory;
 import org.tribot.api2007.NPCChat;
+import org.tribot.api2007.Options;
 import org.tribot.api2007.Player;
 import org.tribot.api2007.WebWalking;
 import org.tribot.api2007.types.RSInterfaceChild;
@@ -24,6 +26,10 @@ public class Furnace {
 	private RSInterfaceChild makeAll;
 	
 	public void walkToFurnace() {
+		
+		if (!Game.isRunOn() && Game.getRunEnergy() > Variables.get().abc_util.generateRunActivation()) {
+			Options.setRunOn(true);
+		}
 		
 		if(WebWalking.walkTo(Variables.get().furnaceTile)) {
 			Timing.waitCondition(Conditions.isInAreaCondition(Variables.get().furnaceArea), 5000);

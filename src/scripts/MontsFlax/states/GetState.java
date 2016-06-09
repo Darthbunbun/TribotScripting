@@ -2,8 +2,6 @@ package scripts.MontsFlax.states;
 
 import org.tribot.api.General;
 import org.tribot.api.input.Mouse;
-import org.tribot.api2007.Game;
-import org.tribot.api2007.Options;
 
 import scripts.MontsFlax.utils.Variables;
 import scripts.api.helpers.InterfacesHelper;
@@ -24,10 +22,6 @@ public class GetState {
 	}
 	
 	public void run() {
-		
-		if (!Game.isRunOn() && Game.getRunEnergy() > Variables.get().abc_util.generateRunActivation()) {
-			Options.setRunOn(true);
-		}
 		
 		switch(state()) {
 		

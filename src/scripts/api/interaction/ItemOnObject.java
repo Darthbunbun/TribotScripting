@@ -2,15 +2,19 @@ package scripts.api.interaction;
 
 import org.tribot.api.DynamicClicking;
 import org.tribot.api.General;
-import org.tribot.api2007.Camera;
 import org.tribot.api2007.Game;
 import org.tribot.api2007.Inventory;
 import org.tribot.api2007.Objects;
+import org.tribot.api2007.Walking;
 import org.tribot.api2007.ext.Filters;
 import org.tribot.api2007.types.RSItem;
 import org.tribot.api2007.types.RSObject;
 
-public class ItemOnObject extends ClickObject{
+import scripts.api.helpers.ACamera;
+
+public class ItemOnObject extends ClickObject {
+	
+	private static ACamera aCamera = new ACamera();
 	
 	
 	public static boolean useItemOnObject(String action, String name, String itemName) {
@@ -25,8 +29,10 @@ public class ItemOnObject extends ClickObject{
 		RSItem[] items = Inventory.find(itemName);
 		
 		if(!object.isClickable()) {
-			Camera.turnToTile(object.getPosition());
+			aCamera.turnToTile(object.getPosition());
+			Walking.walkTo(object.getPosition());
 		} 
+		
 		if(items.length > 0) {
 			if(itemName == null) {
 				itemName = items[0].getDefinition().getName();

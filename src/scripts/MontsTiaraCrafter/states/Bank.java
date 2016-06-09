@@ -1,5 +1,6 @@
 package scripts.MontsTiaraCrafter.states;
 
+import org.tribot.api.General;
 import org.tribot.api.Timing;
 import org.tribot.api2007.Banking;
 import org.tribot.api2007.Inventory;
@@ -46,6 +47,7 @@ public class Bank {
 		
 		if(failToWithdraw > 2) {
 			Login.logout();
+			General.println("Out of materials, ending script");
 			Variables.get().hasMats = false;
 			return true;
 		}

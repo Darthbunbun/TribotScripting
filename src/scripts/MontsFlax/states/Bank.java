@@ -28,11 +28,14 @@ public class Bank {
 	
 	private boolean withdrawFlax() {
 		Variables.get().status = "Withdrawing flax";
-		if(BankHelper.waitUntilBankLoaded() && Banking.withdraw(0, "Flax")) {
-			failToWithdraw = 0;
-			return Timing.waitCondition(Conditions.inventoryContainsCondition("Flax"), 1500);
+		if(BankHelper.waitUntilBankLoaded()) {
+			if(Banking.withdraw(0, "Flax")) {
+				failToWithdraw = 0;
+				return Timing.waitCondition(Conditions.inventoryContainsCondition("Flax"), 1500);
+			} else {
+				failToWithdraw();
+			}
 		}
-		failToWithdraw();
 		return false;
 	}
 	

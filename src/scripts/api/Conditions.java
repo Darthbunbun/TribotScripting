@@ -16,6 +16,7 @@ import org.tribot.api2007.types.RSTile;
 import scripts.api.helpers.BankHelper;
 
 
+
 public class Conditions {
 	
 	public static final Condition IN_BANK_CONDITION = inBankCondition();
@@ -119,6 +120,26 @@ public class Conditions {
 			public boolean active() {
 				General.sleep(100,200);
 				return Player.getPosition().equals(tile);
+			}
+		};
+	}
+	
+	public static Condition yCoordCondition(int coord) {
+		return new Condition() {
+			@Override
+			public boolean active() {
+				General.sleep(100,200);
+				return Player.getPosition().getY() > coord;
+			}
+		};
+	}
+	
+	public static Condition xCoordCondition(int coord) {
+		return new Condition() {
+			@Override
+			public boolean active() {
+				General.sleep(100,200);
+				return Player.getPosition().getX() > coord;
 			}
 		};
 	}
