@@ -44,14 +44,14 @@ public class SwitchStates {
 			break;
 
 		case SLEEP:
-            Variables.get().status = "Smithing Cannonballs";         
-            while(furnace.isSmithing()) {
-                General.sleep(100,200);        
-                if(Variables.get().abc_util.shouldLeaveGame() && Mouse.isInBounds()) {
-                   Variables.get().abc_util.leaveGame();                 
-				}
-				else if(Mouse.isInBounds()){
-					Variables.get().abc_util.performTimedActions();
+        	 	Variables.get().status = "Smithing Cannonballs";         
+        	 	while(furnace.isSmithing()) {
+        	 	General.sleep(100,200);        
+                	if(Variables.get().abc_util.shouldLeaveGame() && Mouse.isInBounds()) {
+                   		Variables.get().abc_util.leaveGame();                 
+			}
+			else if(Mouse.isInBounds()){
+				Variables.get().abc_util.performTimedActions();
                 }
             }
             break;
@@ -71,7 +71,7 @@ public class SwitchStates {
 			if (!furnace.isAtFurnace()) {	
 				return State.WALK_TO_FURNACE;
 			} else if(furnace.isSmithing()) {
-					return State.SLEEP;
+				return State.SLEEP;
 			} else {
 				return State.SMITH_BALLS;
 			}

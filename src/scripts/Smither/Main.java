@@ -80,7 +80,7 @@ public class Main extends Script implements Painting, Starting, MessageListening
 			
 			long runTime = System.currentTimeMillis() - Variables.get().startTime;
 			int cBallsMade = Variables.get().cannonballsMade;
-	        long cBallsPerHour =  Math.round(cBallsMade / (runTime / 3600000.0));
+	        	long cBallsPerHour =  Math.round(cBallsMade / (runTime / 3600000.0));
 			int expGain = Skills.getXP(SKILLS.SMITHING) - Variables.get().startingExp;
 			int currentLevel = Skills.getActualLevel(SKILLS.SMITHING);
 			int gainedLvl = currentLevel - Variables.get().startLevel;
